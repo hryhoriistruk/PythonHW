@@ -14,43 +14,45 @@ def notebook(add_task=None):
 
     return add_task, get_all_tasks
 # 2) протипізувати перше завдання
-def create_todo_list():
-    todo_list = []
 
-    def add_task(task: str) -> None:
-        nonlocal todo_list
-        todo_list.append(task)
-        print("Task added:", task)
+def tasks() -> callable:
+    list_tasks: list[str] = []
 
-    def get_all_tasks() -> list:
-        return todo_list
+    def write_task() -> None:
+        nonlocal list_tasks
+        number_of_tasks: int = int(input("Enter number of tasks: "))
+        for i in range(number_of_tasks):
+            task: str = input("Enter any task:")
 
-    return add_task, get_all_tasks
-# 3) створити функцію котра буде повертати сумму розрядів числа у вигляді строки (також використовуемо типізацію)
-#
-# Приклад:
-#
-# expanded_form(12) # return '10 + 2'
-# expanded_form(42) # return '40 + 2'
-# expanded_form(70304) # return '70000 + 300 + 4'
-def expanded_form(number: int) -> str:
-    str_number = str(number)
-    result = []
-    for i, digit in enumerate(str_number[::-1]):
-        if int(digit) != 0:
-            result.append(digit + '0' * i)
-    return ' + '.join(result[::-1])
-# 4) створити декоратор котрий буде підраховувати скільки разів була запущена функція продекорована цим декоратором, та буде виводити це значення після виконання функцій
-def count_calls(func):
-    def wrapper(*args, **kwargs):
-        wrapper.calls += 1
-        result = func(*args, **kwargs)
-        print(f"Function '{func.__name__}' was called {wrapper.calls} times.")
-        return result
-    wrapper.calls = 0
+            list_tasks.append(task)
+
+    def display_tasks() -> list[str]:
+        nonlocal list_tasks
+        print(list_tasks)
+        return list_tasks
+
+    return write_task, display_tasks
+
+
+write_task, display_tasks = tasks()
+
+write_task()
+
+display_tasks()
+
+# 4)створити декоратор котрий буде підраховувати скільки разів була запущена функція продекорована цим декоратором,
+# та буде виводити це значення після виконання функцій
+
+
+def decor(func):
+    def wrapper(count):
+        count += 1
+        func(count)
+
     return wrapper
+@decor
+def counting(count):
+    print(count)
 
-
-@count_calls
-def example_function():
-    print("Executing the example function.")
+counting(0)
+counting(1)
