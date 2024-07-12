@@ -56,3 +56,24 @@ def counting(count):
 
 counting(0)
 counting(1)
+
+# 3) створити функцію котра буде повертати сумму розрядів числа у вигляді строки (також використовуемо типізацію)
+
+# Приклад:
+
+# expanded_form(12) # return '10 + 2'
+# expanded_form(42) # return '40 + 2'
+# expanded_form(70304) # return '70000 + 300 + 4'
+
+def expanded_form(number: int) -> str:
+    str_number = str(number)
+    result = []
+    for i, digit in enumerate(str_number[::-1]):
+        if int(digit) != 0:
+            result.append(digit + '0' * i)
+    return ' + '.join(result[::-1])
+
+# Examples
+print(expanded_form(12))    # Output: '10 + 2'
+print(expanded_form(42))    # Output: '40 + 2'
+print(expanded_form(70304)) # Output: '70000 + 300 + 4'
