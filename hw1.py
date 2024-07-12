@@ -1,198 +1,172 @@
+# strings
 # 1)написати прогу яка вибирає зі введеної строки цифри і виводить їх через кому,
 # наприклад:
 # st = 'as 23 fdfdg544' введена строка
 # 2,3,5,4,4        #вивело в консолі.
-
-# def extract_individual_digits(s):
-#     digits = [char for char in s if char.isdigit()]
-#     print(','.join(digits))
-#
-# st = 'as 23 fdfdg544'
-# extract_individual_digits(st)
+st = 'as 23 fdfdg544'
+print(' ,'.join(el for el in st if el.isdigit()))
 
 # 2)написати прогу яка вибирає зі введеної строки числа і виводить їх
 # так як вони написані
 # наприклад:
-# st = 'as 23 fdfdg544 34' #введена строка
-# 23, 544, 34              #вивело в консолі
+#   st = 'as 23 fdfdg544 34' #введена строка
+#   23, 544, 34              #вивело в консолі
+st = 'as 23 fdfdg544 34'
+print(''.join([el.replace(' ', ',') for el in st if el.isdigit() or el == ' ']))
 
-
-# def extract_numbers(s):
-#     num = ''
-#     numbers = []
-#     for char in s:
-#         if char.isdigit():
-#             num += char
-#         elif num != '':
-#             numbers.append(num)
-#             num = ''
-#     if num != '':
-#         numbers.append(num)
-#     print(','.join(numbers))
-#
-# st = 'as 23 fdfdg544 34'
-# extract_numbers(st)
 
 # list comprehension
-#
 # 1)є строка:
 # greeting = 'Hello, world'
 # записати кожний символ як окремий елемент списку і зробити його заглавним:
 # ['H', 'E', 'L', 'L', 'O', ',', ' ', 'W', 'O', 'R', 'L', 'D']
+greeting = 'Hello, world'
+print([el.upper() for el in greeting])
 
-# greeting = 'Hello, world'
-#
-#
-# result = [char.upper() for char in greeting]
-#
-#
-# print(result)
 
 # 2) з диапозону від 0-50 записати тільки не парні числа при цьому піднести їх до квадрату
 # приклад:
 # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, ...]
-
-# result = [num**2 for num in range(51) if num % 2 != 0]
-#
-#
-# print(result)
+print([num ** 2 for num in range(51) if num % 2 != 0])
 
 # function
-#
-# - створити функцію яка виводить ліст
 
-# def print_list(input_list):
-#     for item in input_list:
-#         print(item)
-#
-# my_list = [1, 2, 3, 4, 5]
-# print_list(my_list)
+# - створити функцію яка виводить ліст
+def func_lst():
+    return list(range(1, 11))
+
+
+print(func_lst())
 
 # - створити функцію яка приймає три числа та виводить та повертає найбільше.
 
-# def find_max(a, b, c):
-#     maximum = max(a, b, c)
-#     print("The largest number is:", maximum)
-#     return maximum
-#
-# result = find_max(10, 5, 8)
+def func_num(a, b, c):
+    lst = [a, b, c]
+    lst.sort(reverse=True)
+    print(lst[0])
+    return lst[0]
+
+
+func_num(5, 101, 56)
 
 # - створити функцію яка приймає будь-яку кількість чисел, повертає найменьше, а виводить найбільше
-# def min_max(*args):
-#     minimum = min(args)
-#     maximum = max(args)
-#     print("The largest number is:", maximum)
-#     return minimum
-#
-#
-# result = min_max(10, 5, 8, 3, 12)
+def func(*args):
+    lst = list(args)
+    lst.sort(reverse=True)
+    print(lst[0]) # 696
+    return lst[-1] # 5
+
+
+func(7,5,696,25,36,47,554,24,)
+
 
 # - створити функцію яка повертає найбільше число з ліста
+def num_max(lst):
 
-# def find_max_in_list(input_list):
-#     return max(input_list)
-#
-#
-# my_list = [10, 5, 8, 12, 3]
-# result = find_max_in_list(my_list)
+    lst.sort(reverse=True)
+    return lst[0] # 9
+
+
+lst = [6, 9, 5, 3, 4]
+num_max(lst)
 
 # - створити функцію яка повертає найменьше число з ліста
 
-# def find_min_in_list(input_list):
-#     return min(input_list)
-#
-# my_list = [10, 5, 8, 12, 3]
-# result = find_min_in_list(my_list)
+def num_min(lst):
+
+    lst.sort(reverse=False)
+    return lst[0] # 3
+
+
+lst = [6, 9, 5, 3, 4]
+num_min(lst)
 
 # - створити функцію яка приймає ліст чисел та складає значення елементів ліста та повертає його.
-# def sum_list(input_list):
-#     return sum(input_list)
-#
-#
-# my_list = [1, 2, 3, 4, 5]
-# result = sum_list(my_list)
+
+def sum_lst(lst):
+
+    new_lst = sum(lst)
+    print(new_lst)
+    return new_lst
+
+
+lst = [6, 9, 5, 3, 4]
+sum_lst(lst)
 
 # - створити функцію яка приймає ліст чисел та повертає середнє арифметичне його значень.
-# def calculate_average(input_list):
-#     return sum(input_list) / len(input_list)
-#
-#
-# my_list = [1, 2, 3, 4, 5]
-# result = calculate_average(my_list)
+
+def sum_lst(lst):
+
+    new_lst = sum(lst) / len(lst)
+    print(new_lst)
+    return new_lst
+
+
+lst = [6, 9, 5, 3, 4]
+sum_lst(lst)
 
 # 1)Дан list:
-# list = [22, 3,5,2,8,2,-23, 8,23,5]
-#        - знайти мін число
-#                     - видалити усі дублікати
-#                                    - замінити кожне 4-те значення на 'X'
+list1 = [22, 3, 5, 2, 8, 2, -23, 8, 23, 5]
 
-# my_list = [22, 3, 5, 2, 8, 2, -23, 8, 23, 5]
-#
-#
-# min_num = min(my_list)
-# print(f"Minimum number: {min_num}")
-#
-#
-# unique_list = list(set(my_list))
-# print("List without duplicates:", unique_list)
-#
-#
-# for i in range(3, len(unique_list), 4):
-#     unique_list[i] = 'X'
-# print("List with every 4th value replaced with 'X':", unique_list)
+#   - знайти мін число
+list1.sort(reverse=True)
+print(list1[-1])
+
+#   - видалити усі дублікати
+new_list = set(list1)
+print(new_list)
+
+#   - замінити кожне 4-те значення на 'X'
+for i in range(3, len(list1), 4):
+    list1[i] = 'X'
+print(list1)
 
 # 2) вивести на екран пустий квадрат з "*" сторона якого вказана як агрумент функції
 
-# def print_square(side_length):
-#     for i in range(side_length):
-#         if i == 0 or i == side_length - 1:
-#             print('* ' * side_length)
-#         else:
-#             print('* ' + '  ' * (side_length - 2) + '*')
-#
-#
-# side_length = 5
-# print_square(side_length)
+def square_func(n):
+
+    for i in range(n):
+        for j in range(n):
+            if i == 0 or i == n - 1 or j == 0 or j == n - 1:
+                print('*', end='')
+            else:
+                print(' ', end='')
+        print()
+
+
+square_func(6)
 
 # 3) вывести табличку множення за допомогою цикла while
+rows = 9
+columns = 9
+row = 1
 
-
-# def print_multiplication_table(n):
-#     "
-#     i = 1
-#     while i <= n:
-#         j = 1
-#         while j <= n:
-#             print(f"{i*j:>4}", end=" ")
-#             j += 1
-#         print()
-#         i += 1
-#
-#
-# print_multiplication_table(10)
+while row <= rows:
+    column = 1
+    while column <= columns:
+        res = row * column
+        print(f"{res:3}", end=" ")
+        column += 1
+    print()
+    row += 1
 
 # 4) переробити це завдання під меню
+while True:
+    print('1  створити функцію яка виводить ліст')
+    print('2  створити функцію яка повертає найбільше число з ліста')
+    print('3  створити функцію яка повертає найменьше число з ліста')
+    print('4  створити функцію яка приймає ліст чисел та складає значення елементів ліста та повертає його.')
+    print('5  exit')
 
+    entry = input('Enter your choice: ')
 
-def multiplication_table_menu():
-    choice = 0
-    while choice != 3:
-        print("1. Display multiplication table")
-        print("2. Exit")
-        choice = int(input("Enter your choice: "))
-
-        if choice == 1:
-            i = 1
-            while i <= 10:
-                j = 1
-                while j <= 10:
-                    print(i, "*", j, "=", i*j)
-                    j += 1
-                i += 1
-        elif choice == 2:
-            print("Exiting the program...")
-        else:
-            print("Invalid choice, please try again.")
-
-
-multiplication_table_menu()
+    if entry == '1':
+        print(func_lst())
+    if entry == '2':
+        print(num_max(lst))
+    if entry == '3':
+        print(num_min(lst))
+    if entry == '4':
+        print(sum_lst(lst))
+    if entry == '5':
+        break
